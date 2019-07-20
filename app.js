@@ -1,6 +1,10 @@
 const express = require("express");
-const app = express()
+const app = express();
+// let ejs = require('ejs');
+var bodyParser = require("body-parser");
 
+app.use(bodyParser) 
+// app.use(bodyParser.urlencoded({extended: true})); ? 
 app.set("view engine", "ejs")
 
 app.get('/', (request, response, next) => {
@@ -14,6 +18,10 @@ app.get("/campgrounds", (req, res) => {
     {name :"Mountain view", image: "https://images.unsplash.com/photo-1508873696983-2dfd5898f08b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"},
   ]
   res.render("campgrounds", {campgrounds: campgrounds});
+});
+
+app.post("/campgrounds", (req, res) => {
+ res.send("there is some data")
 });
 
 app.listen(3000, () => {
