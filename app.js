@@ -5,9 +5,11 @@ const app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose")
 
+//APP CONFIG//
 mongoose.connect("mongodb://localhost/blog_practice")
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs")
+app.use(express.static("public"));
 
 
 var campgroundSchema = new mongoose.Schema({
