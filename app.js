@@ -1,10 +1,21 @@
+//REQUIRES//
 const express = require("express");
 const app = express();
 // let ejs = require('ejs');
 var bodyParser = require("body-parser");
+var mongoose = require("mongoose")
 
+mongoose.connect("mongodb://localhost/blog_practice")
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs")
+
+
+var campgroundSchema = new mongoose.Schema({
+  name: String,
+  image: String
+})
+
+var Campground = mongoose.model("Campground", campgroundSchema);
 
 var campgrounds = [
   {name :"Salmon Creek", image: "https://images.unsplash.com/photo-1526491109672-74740652b963?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"},
@@ -39,3 +50,4 @@ app.get("/campgrounds/new", (req, res) => {
 app.listen(3000, () => {
   console.log('the server runs on port 3000!')
 });
+
