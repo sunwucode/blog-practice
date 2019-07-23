@@ -4,6 +4,7 @@ const app = express();
 // let ejs = require('ejs');
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose")
+Campground = require("./models/campground")
 
 //APP CONFIG//
 mongoose.connect("mongodb://localhost/blog_practice")
@@ -12,12 +13,9 @@ app.set("view engine", "ejs")
 app.use(express.static("public"));
 
 
-var campgroundSchema = new mongoose.Schema({
-  name: String,
-  image: String
-})
 
-var Campground = mongoose.model("Campground", campgroundSchema);
+
+
 
 var campgrounds = [
   {name :"Salmon Creek", image: "https://images.unsplash.com/photo-1526491109672-74740652b963?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"},
