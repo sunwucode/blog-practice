@@ -51,7 +51,29 @@ app.post("/register", (req, res) => {
     });
   });
 });
+//show login form
 
+app.get("/login", (req, res)=> {
+  res.render("login");
+});
+
+// handle login logic
+
+  app.post("/login", passport.authenticate("local", 
+    {
+      successRedirect: "/campgrounds",
+      failureRedirect: "login"
+    }), function (req, res) {});
+
+    //log out
+    app.get("/logout", (req, res)=> {
+      req.logout();
+      res.redirect("/campgrounds");
+    });
+
+//==============
+//BASIC ROUTES
+//===============
 app.get('/', (request, response, next) => {
   response.render("landing");
 });
